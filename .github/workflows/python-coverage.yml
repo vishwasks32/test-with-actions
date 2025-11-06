@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -28,8 +29,8 @@ jobs:
           pip install pytest-cov==6.2.1
 
       - name: Run tests and generate coverage details
-        run: pytest --cov=src --verbose
-      
+        run: pytest --cov=src
+
       - name: Coverage comment
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
@@ -39,4 +40,3 @@ jobs:
 
       - name: Fail if below threshold
         run: coverage report --fail-under=90
-        
