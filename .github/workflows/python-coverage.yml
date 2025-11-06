@@ -26,3 +26,15 @@ jobs:
            pip install pytest==8.4.1
            pip install coverage==7.9
            pip install pytest-cov==6.2.1
+      - name: Run tests with coverage
+        run: |
+          coverage run -m pytest --cov=src tests/
+      - name: Generate coverage report
+        run: |
+          coverage report
+          coverage xml -o coverage.xml
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.xml
